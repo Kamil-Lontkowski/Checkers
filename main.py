@@ -5,7 +5,7 @@ from checkers.constants import WIDTH, HEIGHT, SQUARE_SIZE, BLACK, WHITE, ROWS
 from checkers.game import Game
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Warcaby")
+pygame.display.set_caption("CHECKERS")
 FPS = 60
 DIFF = 3
 pygame.init()
@@ -86,6 +86,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                pygame.quit()
+                break
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 row, col = get_pos_from_mouse(pos)
@@ -96,11 +98,13 @@ def main():
         elif game.winner == 'WHITE':
             end_screen('White', game.white_moves)
             break
+        if not run:
+            break
         game.update()
 
 
 def menu_display():
-    menu = pygame_menu.Menu('Checkers', 400, 400,
+    menu = pygame_menu.Menu('Checkers', WIDTH // 1.6, HEIGHT // 1.6,
                             theme=pygame_menu.themes.THEME_DARK)
 
     menu.add.button('Play', main)
@@ -111,7 +115,7 @@ def menu_display():
     menu.add.selector('Black algo: ', [("Minimax", 1), ("Alfabeta", 2)], onchange=set_black)
     menu.add.selector('White algo: ', [("Minimax", 1), ("Alfabeta", 2)], onchange=set_white)
     menu.add.button('Quit', pygame_menu.events.EXIT)
-    menu.mainloop(WIN, bgfun=bgfun, wait_for_event=True)
+    menu.mainloop(WIN, bgfun=bgfun)
 
 
 if __name__ == "__main__":

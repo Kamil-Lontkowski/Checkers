@@ -128,6 +128,7 @@ class Board:
             poss.append([k])
         if len(possible_kills) == 0:
             if moves:
+                self.best_move_size = 1
                 return moves
             else:
                 return [[]]
