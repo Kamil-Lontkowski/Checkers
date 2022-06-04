@@ -92,13 +92,13 @@ def main():
                 pos = pygame.mouse.get_pos()
                 row, col = get_pos_from_mouse(pos)
                 game.select(row, col)
+        if not run:
+            break
         if game.winner == 'BLACK':
             end_screen('Black', game.black_moves)
             break
         elif game.winner == 'WHITE':
             end_screen('White', game.white_moves)
-            break
-        if not run:
             break
         game.update()
 
@@ -115,7 +115,10 @@ def menu_display():
     menu.add.selector('Black algo: ', [("Minimax", 1), ("Alfabeta", 2)], onchange=set_black)
     menu.add.selector('White algo: ', [("Minimax", 1), ("Alfabeta", 2)], onchange=set_white)
     menu.add.button('Quit', pygame_menu.events.EXIT)
-    menu.mainloop(WIN, bgfun=bgfun)
+    try:
+        menu.mainloop(WIN, bgfun=bgfun)
+    except pygame.error:
+        pygame.quit()
 
 
 if __name__ == "__main__":

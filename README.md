@@ -47,3 +47,36 @@ In mode AI vs player AI always plays black side.
 
 ### At the end screen you can click whereever you want to go back to menu
 ![](screenshots/end_screen.png)
+
+## Installation
+If you have python installed you can:
+
+### For windows
+Clone this repository
+
+`cd Checkers`
+
+`py -m venv env`  
+
+`.\env\Scripts\activate`
+
+`py -m pip install -r requirements`
+
+`py main.py`
+
+Or you can download zip file from releases
+
+Just extract files and run main.exe
+
+I will try to add packages for linux
+
+You can also try to create your own. After cloning this repo and installing requirements install pyinstaller
+
+`pip3 install pyinstaller`
+
+and type this command: `pyinstaller --noconsole --add-data "checkers/assets/crown.png;./checkers/assets" main.py
+` 
+
+dist folder will appear and in this folder you will find main folder and there will be main.exe
+
+
